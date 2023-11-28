@@ -1,0 +1,23 @@
+[
+	{
+		"username": "Marek",
+		"password": "marek@mail.com",
+		"email": "marek@mail.com",
+		"active": true,
+		"root": true
+	},
+	{
+		"username": "Tiago",
+		"password": "tiago@mail.com",
+		"email": "tiago@mail.com",
+		"active": true,
+		"root": false
+	},
+	{
+		"username": "Raul",
+		"password": "raul@mail.com",
+		"email": "raul@mail.com",
+		"active": true,
+		"root": false
+	}
+]
