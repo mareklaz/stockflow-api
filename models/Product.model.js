@@ -17,7 +17,7 @@ const ProductSchema = new mongoose.Schema(
 		tax: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Tax',
-			required: true,
+			required: false,
 		},
 		totalPrice: {
 			type: Number,

@@ -22,8 +22,8 @@ export const getUserById = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-	const { username, password, email, active, root, token } = req.body;
-	const newUser = new User({ username, password, email, active, root, token });
+	const { username, password, email, active, admin, token } = req.body;
+	const newUser = new User({ username, password, email, active, admin, token });
 	try {
 		await newUser.save();
 		res.status(201).json(newUser);
@@ -35,8 +35,8 @@ export const createUser = async (req, res) => {
 
 export const updateUserById = async (req, res) => {
 	const { userId } = req.params;
-	const { username, password, email, active, root, token } = req.body;
-	const updatedUser = { username, password, email, active, root, token };
+	const { username, password, email, active, admin, token } = req.body;
+	const updatedUser = { username, password, email, active, admin, token };
 	try {
 		await User.findByIdAndUpdate(userId, updatedUser, { new: true });
 		res.status(200).json({ message: 'Usuario actualizado.' });

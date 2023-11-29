@@ -11,6 +11,7 @@ import userRoutes from './routes/User.routes.js';
 import taxRoutes from './routes/Tax.routes.js';
 import categoryRoutes from './routes/Category.routes.js';
 import providerRoutes from './routes/Provider.routes.js';
+import productRoutes from './routes/Product.routes.js';
 
 // Import .env
 const PORT = process.env.PORT;
@@ -28,7 +29,7 @@ app.use(cors());
 connectDB();
 
 // Routes
-app.use('/api', authRoutes, userRoutes, taxRoutes, categoryRoutes, providerRoutes);
+app.use('/api', authRoutes, userRoutes, taxRoutes, categoryRoutes, providerRoutes, productRoutes);
 
 // Server
 // app.use(handleErrors);

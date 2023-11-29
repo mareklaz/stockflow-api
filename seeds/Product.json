@@ -1,0 +1,25 @@
+[
+	{
+		"name": "",
+		"description": "",
+		"price": "",
+		"tax": "",
+		"totalPrice": "",
+		"cost": "",
+		"totalCost": "",
+		"active": "",
+		"barCode": "",
+		"providerRef": "",
+		"categories": ""
+	},
+	{
+		"name": "Tornillo 1/4 x 1 1/2",
+		"description": "Tornillo de 1/4 x 1 1/2",
+		"price": 5.0,
+		"totalPrice": 5.5,
+		"cost": 2.0,
+		"totalCost": 2.2,
+		"active": true,
+		"barCode": "123456789"
+	}
+]
