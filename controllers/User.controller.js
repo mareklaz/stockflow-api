@@ -26,7 +26,7 @@ export const createUser = async (req, res) => {
 	const newUser = new User({ username, password, email, active, admin, token });
 	try {
 		await newUser.save();
-		res.status(201).json(newUser);
+		res.status(201).json({ message: 'Usuario creado correctamente.' });
 	} catch (error) {
 		res.status(409).json({ message: 'El usuario ya existe.' });
 		console.log(error);
@@ -38,8 +38,8 @@ export const updateUserById = async (req, res) => {
 	const { username, password, email, active, admin, token } = req.body;
 	const updatedUser = { username, password, email, active, admin, token };
 	try {
-		await User.findByIdAndUpdate(userId, updatedUser, { new: true });
-		res.status(200).json({ message: 'Usuario actualizado.' });
+		const userUpdated = await User.findByIdAndUpdate(userId, updatedUser, { new: true });
+		res.status(200).json({ message: `Usuario (${userUpdated.username}) actualizado.` });
 	} catch (error) {
 		res.status(409).json({ message: 'Error al actualizar el usuario.' });
 		console.log(error);

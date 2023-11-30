@@ -34,7 +34,7 @@ export const createProvider = async (req, res) => {
 	});
 	try {
 		await newProvider.save();
-		res.status(201).json(newProvider);
+		res.status(201).json({ message: `Proveedor creado.` });
 	} catch (error) {
 		res.status(409).json({ message: 'El proveedor ya existe.' });
 		console.log(error);
@@ -53,8 +53,8 @@ export const updateProviderById = async (req, res) => {
 		updatedBy: req.currentUser.id,
 	};
 	try {
-		await Provider.findByIdAndUpdate(providerId, updatedProvider, { new: true });
-		res.status(200).json({ message: 'Proveedor actualizado.' });
+		const providereUpdated = await Provider.findByIdAndUpdate(providerId, updatedProvider, { new: true });
+		res.status(200).json({ message: `Proveedor (${providereUpdated.name}) actualizado.` });
 	} catch (error) {
 		res.status(409).json({ message: 'Error al actualizar el proveedor.' });
 		console.log(error);
