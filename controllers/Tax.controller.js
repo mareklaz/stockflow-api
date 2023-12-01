@@ -29,6 +29,7 @@ export const createTax = async (req, res) => {
 		name,
 		value,
 		description,
+		percentage: value / 100,
 		createdBy: req.currentUser.id,
 		updatedBy: req.currentUser.id,
 	});
@@ -37,7 +38,7 @@ export const createTax = async (req, res) => {
 		await newTax.save();
 		res.status(201).json({ message: 'Impuesto creado.' });
 	} catch (error) {
-		res.status(409).json({ message: 'El impuesto ya existe.' });
+		res.status(409).json({ message: 'Error al crear el impuesto.' });
 		console.log(error);
 	}
 };
@@ -45,7 +46,7 @@ export const createTax = async (req, res) => {
 export const updateTaxById = async (req, res) => {
 	const { taxId } = req.params;
 	const { name, value, description } = req.body;
-	const updatedTax = { name, value, description, updatedBy: req.currentUser.id };
+	const updatedTax = { name, value, percentage: value / 100, description, updatedBy: req.currentUser.id };
 	try {
 		const taxUpdated = await Tax.findByIdAndUpdate(taxId, updatedTax, { new: true });
 		res.status(200).json({ message: `Impuesto (${taxUpdated.name}) actualizado.` });

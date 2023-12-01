@@ -14,6 +14,10 @@ const TaxSchema = new mongoose.Schema(
 			type: Number,
 			required: true,
 		},
+		percentage: {
+			type: Number,
+			required: true,
+		},
 		createdBy: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
@@ -39,10 +43,5 @@ const TaxSchema = new mongoose.Schema(
 );
 
 const Tax = mongoose.model('Tax', TaxSchema);
-
-// Crea virutal para devolver el percentage con valor float como porcentaje para poder operar
-TaxSchema.virtual('percentage').get(function () {
-	return this.value / 100;
-});
 
 export default Tax;

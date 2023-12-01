@@ -2,6 +2,14 @@ import Product from '../models/Product.model.js';
 import Provider from '../models/Provider.model.js';
 import Tax from '../models/Tax.model.js';
 
+
+const calculateTaxes = (value, tax) => {
+		const totalTax = Number(value) * Number(tax);
+		const total = Number(value) + Number(totalTax)
+		return Number(total);
+}
+
+
 export const getProducts = async (req, res) => {
 	try {
 		const products = await Product.find().populate('taxRef').populate('providerRef');
@@ -51,9 +59,9 @@ export const createProduct = async (req, res) => {
 		description,
 		price,
 		taxRef,
-		totalPrice: parseFloat(price + (price * taxFound.value) / 100),
+		totalPrice: calculateTaxes(price, taxFound.percentage) ,
 		cost,
-		totalCost: parseFloat(cost + (cost * taxFound.value) / 100),
+		totalCost: calculateTaxes(cost, taxFound.percentage) ,
 		active,
 		barCode,
 		providerRef,
@@ -93,14 +101,16 @@ export const updateProductById = async (req, res) => {
 		return;
 	}
 
+	console.log(taxFound)
+
 	const updatedProduct = {
 		name,
 		description,
 		price,
 		taxRef,
-		totalPrice: parseFloat(price + (price * taxFound.value) / 100),
+		totalPrice: calculateTaxes(price, taxFound.percentage) ,
 		cost,
-		totalCost: parseFloat(cost + (cost * taxFound.value) / 100),
+		totalCost: calculateTaxes(cost, taxFound.percentage) ,
 		active,
 		barCode,
 		providerRef,
@@ -129,13 +139,14 @@ export const deleteProductById = async (req, res) => {
 };
 
 export const getCreateProductInfo = async (req, res) => {
-	const { productId } = req.params;
-	try {
-		const product = await Product.findById(productId);
 
-		res.status(200).json(product);
+	try {
+		const provider = await Provider.find()
+		const taxes = await Tax.find()
+
+		res.status(200).json({provider, taxes});
 	} catch (error) {
-		res.status(404).json({ message: 'No se ha encontrado el producto.' });
+		res.status(404).json({ message: 'No se ha encontrado información de proveedores y impuestos.' });
 		console.log(error);
 	}
 };
