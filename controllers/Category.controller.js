@@ -31,7 +31,7 @@ export const createCategory = async (req, res) => {
 	});
 	try {
 		await newCategory.save();
-		res.status(201).json(newCategory);
+		res.status(201).json({ message: 'Categoría creada correctamente.' });
 	} catch (error) {
 		res.status(409).json({ message: 'La categoría ya existe.' });
 		console.log(error);
@@ -44,7 +44,7 @@ export const updateCategoryById = async (req, res) => {
 	const updatedCategory = { name, description, updatedBy: req.currentUser.id };
 	try {
 		await Category.findByIdAndUpdate(categoryId, updatedCategory, { new: true });
-		res.status(200).json({ message: 'Categoría actualizada.' });
+		res.status(200).json({ message: 'Categoría actualizada correctamente.' });
 	} catch (error) {
 		res.status(409).json({ message: 'Error al actualizar la categoría.' });
 		console.log(error);
