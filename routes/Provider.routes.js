@@ -12,8 +12,8 @@ import { isAdmin } from '../middleware/Admin.middleware.js';
 
 const router = express.Router();
 
-router.get('/providers', isAuthenticated, isAdmin, getProviders);
-router.get('/providers/:providerId', isAuthenticated, isAdmin, getProviderById);
+router.get('/providers', isAuthenticated, getProviders);
+router.get('/providers/:providerId', isAuthenticated, getProviderById);
 router.post('/providers', isAuthenticated, isAdmin, createProvider);
 router.put('/providers/:providerId', isAuthenticated, isAdmin, updateProviderById);
 router.delete('/providers/:providerId', isAuthenticated, isAdmin, deleteProviderById);

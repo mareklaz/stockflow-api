@@ -12,8 +12,8 @@ import { isAdmin } from '../middleware/Admin.middleware.js';
 
 const router = express.Router();
 
-router.get('/products', isAuthenticated, isAdmin, getProducts);
-router.get('/products/:productId', isAuthenticated, isAdmin, getProductById);
+router.get('/products', isAuthenticated, getProducts);
+router.get('/products/:productId', isAuthenticated, getProductById);
 router.post('/products', isAuthenticated, isAdmin, createProduct);
 router.put('/products/:productId', isAuthenticated, isAdmin, updateProductById);
 router.delete('/products/:productId', isAuthenticated, isAdmin, deleteProductById);
