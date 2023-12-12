@@ -44,13 +44,11 @@ const ProductSchema = new mongoose.Schema(
 			ref: 'Provider',
 			required: false,
 		},
-		categories: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Category',
-				required: false,
-			},
-		],
+		categoryRef: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Category',
+			required: false,
+		},
 		createdBy: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
